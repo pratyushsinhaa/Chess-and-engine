@@ -16,14 +16,28 @@ class GameState():
                              'K':self.getKingMoves, 'B': self.getBishopMoves, 'N':self.getKnightMoves}
         self.WhiteToMove = True
         self.movelog = []
+        
+        self.whiteKingLocation = (7,4)
+        self.blackKingLocation = (0,4)
+        
+        
+        
+        
+        
+        
+        
+        
     def makeMove(self, move):
-        if move in self.getValidMoves():
-            self.board[move.startRow][move.startCol] = "--"
-            self.board[move.endRow][move.endCol] = move.pieceMoved
-            self.movelog.append(move)  # log the move to show history or unmove is later
-            self.WhiteToMove = not self.WhiteToMove
-        else:
-            print("Invalid move")
+        self.board[move.startRow][move.startCol] = "--"
+        self.board[move.endRow][move.endCol] = move.pieceMoved
+        self.movelog.append(move)  # log the move to show history or unmove is later
+        #update king location 
+        self.WhiteToMove = not self.WhiteToMove
+        if move.pieceMoved =="wK":
+            self.whiteKingLocation = (move.endRow, move.endCol)
+        elif move.pieceMoved == "bK":
+            self.blackKingLocation = (move.endRow, move.endCol)
+        
     
             
             
@@ -35,11 +49,50 @@ class GameState():
             self.board[move.startRow][move.startCol] = move.pieceMoved
         self.board[move.endRow][move.endCol] = move.pieceCaptured
         self.WhiteToMove = not self.WhiteToMove
+        if move.pieceMoved =="wK":
+            self.whiteKingLocation = (move.endRow, move.endCol)
+        elif move.pieceMoved == "bK":
+            self.blackKingLocation = (move.endRow, move.endCol)
         
         
         
     def getValidMoves(self):
-        return self.getAllPossibleMoves() # modify and fix this method later on 
+        #gen all possible mov es
+        moves = self.getAllPossibleMoves()
+        # for each move make move
+        for i in range(len(moves)-1,-1,-1): #when removing go backwards
+            self.makeMove(moves[i])
+        # gen all opp move
+        # for each opp move, see if attack king
+        # if they do attack king, not valid  move
+            self.WhiteToMove =  not self.WhiteToMove
+            if self.inCheck():
+                moves.remove(moves[i])
+            self.WhiteToMove = not self.WhiteToMove
+            self.undoMove()
+        return moves # modify and fix this method later on 
+    
+    
+    
+    
+    def inCheck(self):
+        if self.WhiteToMove:
+            return self.squareUnderAttack(self.whiteKingLocation[0], self.whiteKingLocation[1])
+        else:
+            return self.squareUnderAttack(self.blackKingLocation[0],self.blackKingLocation[1])
+    
+    
+    
+    def squareUnderAttack(self,r, c):
+        self.WhiteToMove = not self.WhiteToMove # switch to opponent pov
+        oppMoves = self.getAllPossibleMoves()
+        self.WhiteToMove = not self.WhiteToMove
+        for move in oppMoves:
+            if move.endRow == r and move.endCol ==  c:
+                self.WhiteToMove = not self.WhiteToMove
+                return True
+        return False
+    
     
     
     def getAllPossibleMoves(self):
