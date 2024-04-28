@@ -1,0 +1,1 @@
+{"name":"Local: ultrafastmath","url":"/Users/pratyushsinha/VScodimg/PyProj/env/ultrafastmath.py","tests":[{"id":1697218388229,"input":"101\n101","output":"000"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/pratyushsinha/VScodimg/PyProj/env/ultrafastmath.py","group":"local","local":true}

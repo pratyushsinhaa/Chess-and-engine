@@ -1,0 +1,1 @@
+{"name":"Local: Divisibleby2","url":"/Users/pratyushsinha/VScodimg/PyProj/env/Divisibleby2.py","tests":[{"id":1696591219810,"input":"2\n1\n2","output":"3\n12"},{"id":1696591234511,"input":"3\n1\n2\n3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/pratyushsinha/VScodimg/PyProj/env/Divisibleby2.py","group":"local","local":true}

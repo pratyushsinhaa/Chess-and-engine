@@ -1,0 +1,1 @@
+{"name":"Local: horseshoe","url":"/Users/pratyushsinha/VScodimg/PyProj/env/horseshoe.py","tests":[{"id":1696958342687,"input":"3 4 5 6","output":"0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/pratyushsinha/VScodimg/PyProj/env/horseshoe.py","group":"local","local":true}
