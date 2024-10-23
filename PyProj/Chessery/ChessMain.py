@@ -24,7 +24,7 @@ def loadImages():
     """
     pieces = ['wp', 'wR', 'wN', 'wB', 'wK', 'wQ', 'bp', 'bR', 'bN', 'bB', 'bK', 'bQ']
     for piece in pieces:
-        IMAGES[piece] = p.transform.scale(p.image.load("images/" + piece + ".png"), (SQUARE_SIZE, SQUARE_SIZE))
+        IMAGES[piece] = p.transform.scale(p.image.load("PyProj/Chessery/images/" + piece + ".png"), (SQUARE_SIZE, SQUARE_SIZE))
 
 
 def main():
